@@ -136,7 +136,10 @@
   padding-block: 8px;
   transition: 0.05s ease;
   cursor: pointer;
-  &:hover,
+  &:hover{
+    background-color: var(--main-color);
+    color:var(--text-color-white);
+  }
   &.active {
     color: var(--main-color);
     text-decoration: underline;

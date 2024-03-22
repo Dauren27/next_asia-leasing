@@ -12,6 +12,23 @@ export const metadata = {
   icons: {
     icon: "/icon.png",
   },
+  keywords:
+    "лизинг, авто бишкек, лизинг бишкек, азия лизинг, условия лизинга, asia leasing, авто кредит",
+  author: "Asia Leasing. Азия лизинг",
+  robots: "index, follow",
+  language: "Russian",
+  canonicalUrl: "https://next-asia-leasing.vercel.app",
+  openGraph: {
+    title: "Asia Leasing - Автолизинг в Бишкеке на выгодных условиях",
+    description:
+      "Лизинговая компания предлагает широкий выбор автомобилей в лизинг на выгодных условиях.",
+    locale: "ru_RU",
+    siteName: "Asia Leasing | Азия Лизинг",
+    url: "https://next-asia-leasing.vercel.app",
+    image: "/icon.png",
+    type: "website",
+  },
+  charset: "UTF-8",
 };
 
 export default function RootLayout({ children }) {

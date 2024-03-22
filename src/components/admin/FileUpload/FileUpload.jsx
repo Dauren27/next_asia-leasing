@@ -16,7 +16,6 @@ const FileUpload = (props) => {
     const files = event.target.files;
     setSelectedFiles([...selectedFiles, ...Array.from(files)]); // Efficiently handle multiple files
   };
-  console.log(selectedFiles);
   const fileRemove = (file) => {
     const updatedList = [...selectedFiles];
     updatedList.splice(selectedFiles.indexOf(file), 1);
@@ -78,7 +77,6 @@ const FileUpload = (props) => {
       // Send compressed files to server using FormData and fetch/axios
       selectedFiles.forEach((file, index) => {
         // Implement logic to send compressedFile using resizeAndCompressImage
-        console.log(`Sending compressed file ${index + 1}:`, compressedFile);
       });
     }
   };

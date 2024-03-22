@@ -40,7 +40,6 @@ const CarAdd = () => {
     event.preventDefault();
     // const convertedString = formData.volume.toString().replace(/(\d+),(\d+)/g, "$1.$2");
     // const convertedNumber = parseFloat(convertedString);
-    // console.log(parseFloat(convertedString));
     // setFormData({ ...formData, volume: convertedNumber });
     createCar(formData);
   };

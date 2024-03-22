@@ -14,7 +14,6 @@ export default function UsedAuto() {
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [cars, setCars] = useState();
-  console.log(cars);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterOptions, setFilterOptions] = useState({
     transmission: "",
@@ -23,7 +22,6 @@ export default function UsedAuto() {
   });
   const [showFilters, setShowFilters] = useState(false);
   const [filteredCars, setFilteredCars] = useState([]);
-  console.log(filteredCars);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);

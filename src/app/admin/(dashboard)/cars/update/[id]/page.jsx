@@ -17,7 +17,6 @@ import Link from "next/link";
 
 const CarUpdate = ({ params }) => {
   const router = useRouter();
-  console.log(params);
   const { data: cars, isSuccess: isGetSuccess } = useGetCarByIdQuery({
     id: params.id,
   });
