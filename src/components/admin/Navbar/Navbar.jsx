@@ -6,10 +6,14 @@ import Link from "next/link";
 import { IoIosMenu } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+import Image from "next/image";
+import icon from "../../../assets/icons/icon.png";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuth } = useSelector((state) => state.auth);
   const closeNavbar = () => {
     setIsOpen(false);
   };
@@ -17,7 +21,7 @@ const Navbar = () => {
     <header className={styles.header}>
       <div className={`container ${styles.container}`}>
         <h1>
-          <a className={styles.logo}>Asia Leasing</a>
+          <Image src={icon} alt="Asia Leasing" width={80} height={50} />
         </h1>
         <button
           className={styles.navOpenBtn}
@@ -43,7 +47,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/admin/cars"
-                className={styles.navbarLink}
+                className={`${styles.navbarLink} ${
+                  pathname == "/admin/cars" ? styles.active : ""
+                }`}
                 onClick={closeNavbar}
               >
                 <span>Машины</span>
@@ -53,7 +59,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/admin/users"
-                className={styles.navbarLink}
+                className={`${styles.navbarLink} ${
+                  pathname == "/admin/users" ? styles.active : ""
+                }`}
                 onClick={closeNavbar}
               >
                 <span>Пользователи</span>
@@ -63,7 +71,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/admin/applications"
-                className={styles.navbarLink}
+                className={`${styles.navbarLink} ${
+                  pathname == "/admin/applications" ? styles.active : ""
+                }`}
                 onClick={closeNavbar}
               >
                 <span>Заявки</span>

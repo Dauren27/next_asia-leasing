@@ -17,20 +17,12 @@ const Profile = () => {
         <h2>Информация о пользователе</h2>
         <div className={styles.profile__info}>
           <div className={styles.info__item}>
-            <h3>Имя пользователя</h3>
-            {user && user?.name && (
-              <input type="text" readonly="readonly" value={user.name} />
-            )}
+            <h3>Имя пользователя {user && user?.name}</h3>
+            
           </div>
           <div className={styles.info__item}>
-            <h3>Роль</h3>
-            {user && user?.role && (
-              <input
-                type="text"
-                readonly="readonly"
-                value={user.role}
-              />
-            )}
+            <h3>Роль: {user && user?.role}</h3>
+           
           </div>
         </div>
         <button onClick={onLogoutHandle}>Выйти</button>

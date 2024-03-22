@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 const PrettoSlider = styled(Slider)({
-  color: "#2e8b57",
+  color: "#007480",
   height: 4,
   "& .MuiSlider-track": {
     border: "none",

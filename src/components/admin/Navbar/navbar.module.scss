@@ -62,8 +62,8 @@
   visibility: visible;
   transition: 0.5s var(--cubic-out);
 }
-.menu__svg{
-    color: var(--main-color);
+.menu__svg {
+  color: var(--main-color);
 }
 .navCloseBtn {
   color: var(--text-color);
@@ -137,9 +137,9 @@
   transition: 0.05s ease;
   cursor: pointer;
   &:hover,
-  a.active {
-    background-color: var(--main-color);
-    color: var(--text-color-white);
+  &.active {
+    color: var(--main-color);
+    text-decoration: underline;
   }
 }
 .dropdown__link {
@@ -175,7 +175,7 @@
       &.dropdown__active {
         display: block;
       }
-      
+
       a {
         font-size: 20px;
         padding-inline: 10px 15px;

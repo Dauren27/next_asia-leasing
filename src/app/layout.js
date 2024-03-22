@@ -9,13 +9,15 @@ export const metadata = {
   title: "Asia Leasing - Автолизинг в Бишкеке на выгодных условиях",
   description:
     "Лизинговая компания предлагает широкий выбор автомобилей в лизинг на выгодных условиях.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <>
-      <Head>
-      </Head>
+      <Head></Head>
       <html lang="ru">
         <body>
           <AppRouterCacheProvider>

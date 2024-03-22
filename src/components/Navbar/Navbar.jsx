@@ -5,11 +5,14 @@ import Link from "next/link";
 import { IoIosMenu } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+import icon from "../../assets/icons/icon.png";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [isSubOpen, setIsSubOpen] = useState(false);
-
   const closeNavbar = () => {
     setIsOpen(false);
   };
@@ -18,7 +21,8 @@ const Navbar = () => {
     <header className={styles.header}>
       <div className={`container ${styles.container}`}>
         <h1>
-          <a className={styles.logo}>Asia Leasing</a>
+          {/* <a className={styles.logo}>Asia Leasing</a> */}
+          <Image src={icon} alt="Asia Leasing" width={80} height={50} />
         </h1>
         <button
           className={styles.navOpenBtn}
@@ -44,7 +48,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/"
-                className={styles.navbarLink}
+                className={`${styles.navbarLink} ${
+                  pathname == "/" ? styles.active : ""
+                }`}
                 onClick={closeNavbar}
               >
                 <span>Главная</span>
@@ -53,7 +59,12 @@ const Navbar = () => {
             </li>
             <li className={`${styles.dropdown__link}`}>
               <span
-                className={styles.navbarLink}
+                className={`${styles.navbarLink} ${
+                  pathname == "/cars/category/new" ||
+                  pathname == "/cars/category/used"
+                    ? styles.active
+                    : ""
+                }`}
                 onClick={() => setIsSubOpen(!isSubOpen)}
               >
                 <span>
@@ -68,7 +79,9 @@ const Navbar = () => {
               >
                 <Link
                   href="/cars/category/new"
-                  className={styles.navbarLink}
+                  className={`${styles.navbarLink} ${
+                    pathname == "/cars/category/new" ? styles.active : ""
+                  }`}
                   onClick={closeNavbar}
                 >
                   <span>Новые авто</span>
@@ -76,7 +89,9 @@ const Navbar = () => {
                 </Link>
                 <Link
                   href="/cars/category/used"
-                  className={styles.navbarLink}
+                  className={`${styles.navbarLink} ${
+                    pathname == "/cars/category/used" ? styles.active : ""
+                  }`}
                   onClick={closeNavbar}
                 >
                   <span>Авто с пробегом</span>
@@ -87,7 +102,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/about"
-                className={styles.navbarLink}
+                className={`${styles.navbarLink} ${
+                  pathname == "/about" ? styles.active : ""
+                }`}
                 onClick={closeNavbar}
               >
                 <span>О нас</span>
@@ -98,7 +115,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/contacts"
-                className={styles.navbarLink}
+                className={`${styles.navbarLink} ${
+                  pathname == "/contacts" ? styles.active : ""
+                }`}
                 onClick={closeNavbar}
               >
                 <span>Контакты</span>
