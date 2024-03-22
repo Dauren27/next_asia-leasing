@@ -1,0 +1,81 @@
+
+.modal__title {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--main-color);
+}
+.calculator__close svg {
+  width: 40px;
+  height: 40px;
+}
+.calculator__form {
+  width: 380px;
+  min-height: 200px;
+  padding: 0 10px 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 1s var(--cubic-out);
+  transition-delay: 1s;
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .form__left, .form__right{
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+  .form__item {
+    margin-top: 20px;
+    width: 300px;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-color-gray);
+    }
+    input {
+      margin-top: 10px;
+      width: 100%;
+      height: 50px;
+      padding: 0 10px;
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid hsl(0, 0%, 80%);
+      font-size: 18px;
+      background-color: var(--input-background);
+      color: var(--input-text-color);
+    }
+    button {
+      width: 300px;
+      height: 50px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      border: 1px solid var(--main-color);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      background-color: var(--main-color);
+      color: var(--text-color-white);
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
+      &:hover {
+        color: var(--main-color);
+        background-color: var(--text-color-white);
+        transition: 0.5s;
+      }
+    }
+  }
+  
+}

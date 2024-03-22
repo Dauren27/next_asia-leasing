@@ -1,0 +1,101 @@
+.home {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  z-index: 1;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 100px;
+    height: 100%;
+  }
+  .home__content {
+    max-width: 600px;
+    z-index: 1;
+    h1 {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      opacity: 1;
+      @media (max-width: 768px) {
+        font-size: 2.8rem;
+      }
+    }
+    h3 {
+      font-size: 2rem;
+      color: var(--main-color);
+      opacity: 1;
+      @media (max-width: 768px) {
+        font-size: 1.6rem;
+      }
+    }
+    p {
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 15px 0 30px;
+      opacity: 1;
+      @media (max-width: 1200px) {
+        max-width: 70%;
+      }
+      @media (max-width: 1000px) {
+        max-width: 90%;
+      }
+      @media (max-width: 768px) {
+        max-width: 90%;
+        font-size: 0.9rem;
+      }
+    }
+  }
+  .home__img {
+    position: relative;
+    width: 380px;
+    height: 380px;
+    transform: rotate(45deg);
+    z-index: 0;
+    @media (max-width: 1000px) {
+      transform: rotate(0deg);
+      width: 100%;
+    }
+    .rhombus {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--background);
+      border: 25px solid var(--main-color);
+      box-shadow: -15px 15px 15px rgba(0, 0, 0, 0.2);
+      opacity: 1;
+      z-index: 0;
+      @media (max-width: 1000px) {
+        position: relative;
+        border: none;
+        box-shadow: none;
+      }
+      img {
+        position: absolute;
+        top: 90px;
+        right: -50px;
+        max-width: 550px;
+        transform: rotate(-45deg);
+        opacity: 1;
+        z-index: 1;
+        @media (min-width: 1650px) {
+          max-width: 850px;
+        }
+        @media (min-width: 1500px) {
+          max-width: 550px;
+        }
+        @media (max-width: 1000px) {
+          transform: rotate(0deg);
+
+          left: 0;
+          top: 20px;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}

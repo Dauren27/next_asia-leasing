@@ -1,0 +1,38 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-bottom: 50px;
+  h3 {
+    margin-top: 50px;
+  }
+  .applications__content {
+    margin-top: 100px;
+    width: 100%;
+    .applications__headers {
+      max-width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .select{
+        margin-top: 30px;
+      }
+      h2 {
+        color: var(--text-color);
+        font-size: 35px;
+        line-height: 1.2;
+        font-weight: 500;
+        @media (max-width: 768px) {
+          font-size: 30px;
+        }
+      }
+    }
+    .applications__list {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}

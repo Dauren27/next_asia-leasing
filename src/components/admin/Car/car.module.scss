@@ -1,0 +1,129 @@
+.catalogCars__item {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--text-color-white);
+  border-radius: 5px;
+  padding: 5px 15px 10px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  @media (max-width: 768px) {
+    margin-top: 0px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 0;
+  }
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .item__left {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    height: 230px;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin-top: 10px;
+    }
+  }
+  .item__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    h3 {
+      color: var(--text-color);
+      font-size: 28px;
+      margin-top: 10px;
+      font-weight: 400;
+    }
+    .item__description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 5px;
+        color: var(--text-color-gray);
+        span {
+          font-weight: 500;
+          color: var(--text-color);
+        }
+      }
+      .item__description__left {
+        width: 100%;
+        border-radius: 5px;
+        background-color: var(--text-color-white);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: var(--text-color);
+        background: var(--text-color-white);
+      }
+    }
+    .item__price {
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      background-color: var(--text-color-white);
+      font-size: 20px;
+      font-weight: 500;
+      margin-top: 10px;
+    }
+    .item__bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+
+      button {
+        width: 48%;
+        height: 40px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        color: var(--text-color-white);
+        font-size: 18px;
+        font-weight: 400;
+
+        cursor: pointer;
+        &:hover {
+          transition: 0.5s;
+        }
+      }
+      .item__edit {
+        background-color: var(--edit-button);
+        border: 1px solid var(--edit-button);
+
+        &:hover {
+          color: var(--edit-button);
+          background-color: transparent;
+        }
+      }
+      .item__delete {
+        background-color: var(--delete-button);
+        border: 1px solid var(--delete-button);
+
+        &:hover {
+          color: var(--delete-button);
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}

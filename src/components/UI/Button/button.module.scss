@@ -1,0 +1,22 @@
+.button {
+  width: 245px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background: var(--main-color);
+  border: 2px solid var(--main-color);
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  color: var(--text-color-white);
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-weight: 500;
+  opacity: 1;
+  &:hover {
+    background: transparent;
+    color: var(--main-color);
+  }
+}

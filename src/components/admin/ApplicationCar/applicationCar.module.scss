@@ -1,0 +1,69 @@
+.car {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--text-color-white);
+  border-radius: 5px;
+  padding: 0px 15px 10px 0px;
+  margin-left: 30px;
+  @media (max-width: 950px) {
+    margin-left: 20px;
+  }
+  .item__left {
+    display: flex;
+    justify-content: center;
+    width: 270px;
+    height: 200px;
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      margin-top: 10px;
+    }
+  }
+  .item__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    h3 {
+      color: var(--text-color);
+      font-size: 28px;
+      margin-top: 10px;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+    .item__description {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 5px;
+        color: var(--text-color-gray);
+        span {
+          font-weight: 500;
+          color: var(--text-color);
+        }
+      }
+      .item__description__left {
+        width: 100%;
+        border-radius: 5px;
+        background-color: var(--text-color-white);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: var(--text-color);
+        background: var(--text-color-white);
+      }
+    }
+  }
+}
