@@ -18,6 +18,7 @@ const authConfig = {
       },
     }),
   ],
+  secret: 'supersecret',
   pages: {
     signIn: "/admin",
   },
