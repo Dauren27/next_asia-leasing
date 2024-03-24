@@ -26,7 +26,7 @@ const Users = () => {
 
   const handleDeleteConfirm = ({ id }) => {
     setOpenDialog(false);
-    deleteCar({ id: id });
+    // deleteCar({ id: id });
   };
 
   const handleDeleteCancel = () => {
@@ -50,7 +50,7 @@ const Users = () => {
             <button>Добавить</button>
           </Link>
         </div>
-        <TableContainer component={Paper} style={{marginTop:"20px"}}>
+        <TableContainer component={Paper} style={{ marginTop: "20px" }}>
           <Table sx={{ minWidth: 400 }} aria-label="simple table">
             <TableHead>
               <TableRow>
@@ -63,10 +63,10 @@ const Users = () => {
             </TableHead>
             <TableBody>
               {users &&
-                users.map((user) => (
+                users.map((user, index) => (
                   <TableRow
-                    key={user.name}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    key={user.name + index}
                   >
                     <TableCell component="th" scope="row">
                       {user.name}

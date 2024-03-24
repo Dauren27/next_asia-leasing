@@ -7,12 +7,20 @@ import { useEffect } from "react";
 import { BsPlusLg } from "react-icons/bs";
 import { RiPencilFill } from "react-icons/ri";
 import { useCreateCarMutation } from "@/libs/store/reducers/carsApi";
-import { useGetColorsQuery } from "@/libs/store/reducers/colorApi";
+import {
+  useDeleteColorMutation,
+  useGetColorsQuery,
+} from "@/libs/store/reducers/colorApi";
 import FileUpload from "@/components/admin/FileUpload/FileUpload";
 import ChangeColorModal from "@/components/admin/ChangeColorModal/ChangeColorModal";
 import AddColorModal from "@/components/admin/AddColorModal/AddColorModal";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+// import { MdDelete } from "react-icons/md";
+// import Dialog from "@mui/material/Dialog";
+// import DialogTitle from "@mui/material/DialogTitle";
+// import DialogActions from "@mui/material/DialogActions";
+// import Button from "@mui/material/Button";
 
 const CarAdd = () => {
   const router = useRouter();
@@ -30,6 +38,25 @@ const CarAdd = () => {
   });
   const [createCar, { isLoading, isSuccess, isError }] = useCreateCarMutation();
   const { data: colors } = useGetColorsQuery();
+
+  //---DeleteColor---
+  // const [deleteColor, { isSuccess: isDeleteColorSuccess }] =
+  //   useDeleteColorMutation();
+  // const [openDialog, setOpenDialog] = useState(false);
+
+  // const handleDeleteClick = () => {
+  //   setOpenDialog(true);
+  // };
+
+  // const handleDeleteConfirm = ({ id }) => {
+  //   setOpenDialog(false);
+  //   deleteColor({ id: id });
+  // };
+
+  // const handleDeleteCancel = () => {
+  //   setOpenDialog(false);
+  // };
+  //---DeleteColor---
   const years = Array.from({ length: 15 }, (_, index) => 2010 + index);
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,7 +72,7 @@ const CarAdd = () => {
   };
   useEffect(() => {
     if (isSuccess) {
-      router.push("/admin/cars");
+      router.push("/admin/cars/user");
     }
   }, [isSuccess]);
 
@@ -70,7 +97,7 @@ const CarAdd = () => {
   return (
     <div className={styles.main}>
       <div className={styles.main__headers}>
-        <Link href="/admin/cars">
+        <Link href="/admin/cars/user">
           <button>Назад</button>
         </Link>
       </div>
@@ -224,6 +251,12 @@ const CarAdd = () => {
                     onClick={handleUpdateModalOpen}
                   />
                 )}
+                {/* {formData.color_id && (
+                  <MdDelete
+                    className={styles.item__flex__svg}
+                    onClick={handleDeleteClick}
+                  />
+                )} */}
                 {open && (
                   <AddColorModal onClose={handleModalClose} open={open} />
                 )}
@@ -235,6 +268,18 @@ const CarAdd = () => {
                   />
                 )}
               </div>
+              {/* <Dialog open={openDialog} onClose={handleDeleteCancel}>
+                <DialogTitle>Вы уверены что хотите удалить?</DialogTitle>
+                <DialogActions>
+                  <Button onClick={handleDeleteCancel}>Отмена</Button>
+                  <Button
+                    onClick={() => handleDeleteConfirm({ id: formData?.color_id })}
+                    autoFocus
+                  >
+                    Удалить
+                  </Button>
+                </DialogActions>
+              </Dialog> */}
             </div>
             <div className={styles.form__item}>
               <h3>Цена</h3>

@@ -1,100 +1,102 @@
 .login {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .login__form {
+    padding: 30px 30px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    .login__form {
-      padding: 30px 30px;
+    border-radius: 20px;
+    background-color: var(--background);
+    width: 500px;
+    h2 {
+      font-size: 40px;
+      color: #333;
+      line-height: 60px;
+      font-weight: 500;
+    }
+    input {
+      margin-top: 30px;
+      width: 100%;
+      height: 50px;
+      padding: 0 10px;
+      border-radius: 5px;
+      outline: none;
+      border: 1px solid hsl(0, 0%, 80%);
+      font-size: 18px;
+      background-color: var(--input-background);
+      color: var(--input-text-color);
+    }
+    button {
+      width: 250px;
+      margin-top: 20px;
+      height: 50px;
+      text-align: center;
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      border-radius: 20px;
-      background-color: var(--background);
-      width: 500px;
-      h2 {
-        font-size: 40px;
-        color: #333;
-        line-height: 60px;
-        font-weight: 500;
-      }
-      input {
-        margin-top: 30px;
+      border-radius: 10px;
+      border: 1px solid var(--main-color);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      background-color: var(--main-color);
+      color: var(--text-color-white);
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      @media (max-width: 768px) {
         width: 100%;
-        height: 50px;
-        padding: 0 10px;
-        border-radius: 5px;
-        outline: none;
-        border: 1px solid hsl(0, 0%, 80%);
-        font-size: 18px;
-        background-color: var(--input-background);
-        color: var(--input-text-color);
       }
-      button {
-        width: 250px;
-        margin-top: 30px;
-        height: 50px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        border: 1px solid var(--main-color);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        background-color: var(--main-color);
-        color: var(--text-color-white);
-        font-size: 20px;
-        font-weight: 500;
-        cursor: pointer;
-        @media (max-width: 768px) {
-          width: 100%;
-        }
-        &:hover {
-          color: var(--main-color);
-          background-color: var(--text-color-white);
-          transition: 0.5s;
-        }
+      &:hover {
+        color: var(--main-color);
+        background-color: var(--text-color-white);
+        transition: 0.5s;
       }
-      p {
+    }
+    p {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      max-width: 300px;
+      margin-top: 20px;
+    }
+    .error {
+      color: var(--error-text);
+    }
+    .loading {
+      color: var(--loading-text);
+    }
+    .success {
+      color: var(--success-text);
+    }
+    .link {
+      color: var(--loading-text);
+      text-decoration: underline;
+      font-size: 18px;
+      margin-top: 15px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      span {
         font-weight: 500;
         font-size: 14px;
         line-height: 17px;
-        max-width: 300px;
-        margin-top: 20px;
+        color: #aaa;
+        margin-right: 10px;
       }
-      .error {
-        color: var(--error-text);
-      }
-      .loading {
-        color: var(--loading-text);
-      }
-      .success {
-        color: var(--success-text);
-      }
-      .link {
-        margin-top: 23px;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        span {
-          font-weight: 500;
-          font-size: 14px;
-          line-height: 17px;
-          color: #aaa;
-          margin-right: 10px;
-        }
-        a {
-          font-weight: bold;
-          font-size: 14px;
-          line-height: 17px;
-          color: var(--main-color);
-          text-decoration: none;
-          cursor: pointer;
-          &:hover {
-            text-decoration: underline;
-          }
+      a {
+        font-weight: bold;
+        font-size: 14px;
+        line-height: 17px;
+        color: var(--main-color);
+        text-decoration: none;
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
   }
-  
+}

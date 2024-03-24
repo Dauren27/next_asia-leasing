@@ -7,18 +7,29 @@ const authConfig = {
       credentials: {
         email: { label: "email", type: "email", required: true },
         password: { label: "password", type: "password", required: true },
+        role: { label: "role", type: "text", required: true },
       },
       async authorize(credentials) {
         const user = {
           email: credentials.email,
-          password: credentials.password,
+          role: credentials.role,
         };
 
         return user;
       },
     }),
   ],
-  secret: 'supersecret',
+  secret: "supersecret",
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token, user }) {
+      session.user = token;
+
+      return session;
+    },
+  },
   pages: {
     signIn: "/admin",
   },

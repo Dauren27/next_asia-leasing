@@ -91,6 +91,10 @@ const ApplicationCar = ({ car }) => {
               Срок финансирования: <span>{car?.period}</span>
             </p>
             <hr />
+            <p>
+              Пользователь: <span>{car?.company?.name}</span>
+            </p>
+            <hr />
           </div>
           <hr />
         </div>

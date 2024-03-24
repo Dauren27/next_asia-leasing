@@ -27,6 +27,10 @@
   box-sizing: border-box;
   font-family: "Inter", sans-serif !important;
 }
+html {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 li {
   list-style: none;
 }

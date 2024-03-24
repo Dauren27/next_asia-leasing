@@ -1,18 +1,17 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import styles from "./cars.module.scss";
-import Car from "../Car/Car";
+import styles from "./page.module.scss";
+import Car from "@/components/admin/Car/Car";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
-import { useGetCarsQuery } from "@/libs/store/reducers/carsApi";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { useGetUserCarsQuery } from "@/libs/store/reducers/carsApi";
 
-const Cars = () => {
-  const session = useSession();
-  const { data, isLoading, isError } = useGetCarsQuery();
+const UsersCars = () => {
+  const { data, isLoading, isError } = useGetUserCarsQuery();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterOptions, setFilterOptions] = useState({
     bornMin: "",
@@ -92,12 +91,11 @@ const Cars = () => {
       engineMatches
     );
   };
-
   return (
     <div className={`${styles.catalogCars}`}>
       <div className={styles.catalogCars__header}>
         <div className={styles.catalogCars__headers}>
-          <h2>Список всех автомобилей</h2>
+          <h2>Мои автомобили</h2>
           <Link href="/admin/cars/add">
             <button>Добавить</button>
           </Link>
@@ -245,4 +243,4 @@ const Cars = () => {
   );
 };
 
-export default Cars;
+export default UsersCars;

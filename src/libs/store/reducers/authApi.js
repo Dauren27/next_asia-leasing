@@ -12,6 +12,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ["User"],
   endpoints: (build) => ({
     login: build.mutation({
       query: (body) => ({
@@ -26,6 +27,7 @@ export const authApi = createApi({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["User"],
     }),
     logout: build.mutation({
       query: (body) => ({
@@ -39,6 +41,7 @@ export const authApi = createApi({
     }),
     getAllUsers: build.query({
       query: () => "/api/v1/users/all",
+      providesTags: (result) => ["User"],
     }),
   }),
 });

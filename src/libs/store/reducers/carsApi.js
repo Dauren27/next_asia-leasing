@@ -28,7 +28,12 @@ export const carsApi = createApi({
       }),
       providesTags: (result) => ["Cars"],
     }),
-
+    getUserCars: build.query({
+      query: () => ({
+        url: `/api/v1/cars/list`,
+      }),
+      providesTags: (result) => ["Cars"],
+    }),
     // sendImageProducts: build.mutation({
     //   query: (formData) => ({
     //     url: `/api/v1/media/car`,
@@ -46,9 +51,8 @@ export const carsApi = createApi({
     }),
     deleteCar: build.mutation({
       query: ({ id }) => ({
-        url: `/api/v1/cars/obj`,
+        url: `/api/v1/cars/obj?object_=${id}`,
         method: "DELETE",
-        body: id,
       }),
       invalidatesTags: ["Cars"],
     }),
@@ -65,5 +69,6 @@ export const {
   useGetCarByIdQuery,
   useGetCarsQuery,
   useUpdateCarMutation,
-  useDeleteCarMutation
+  useDeleteCarMutation,
+  useGetUserCarsQuery,
 } = carsApi;

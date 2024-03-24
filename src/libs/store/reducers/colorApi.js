@@ -38,8 +38,8 @@ export const colorApi = createApi({
       invalidatesTags: ["Color"],
     }),
     deleteColor: build.mutation({
-      query: (id) => ({
-        url: `/api/v1/utils/color`,
+      query: ({id}) => ({
+        url: `/api/v1/utils/color?object_=${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Color"],

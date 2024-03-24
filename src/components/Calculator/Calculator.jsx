@@ -143,11 +143,13 @@ const Calculator = ({ open, onClose }) => {
   // useEffect(() => {
   //   calculatePercent();
   // }, [data.price]);
+  
   return (
     <BootstrapDialog
       open={open}
       onClose={onClose}
       sx={{ "& .MuiDialog-paper": { maxWidth: "800px" } }}
+      scroll="body"
     >
       <DialogTitle>
         <span className={styles.modal__title}>Калькулятор</span>

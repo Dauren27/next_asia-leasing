@@ -51,7 +51,7 @@ const CarUpdate = ({ params }) => {
   };
   useEffect(() => {
     if (isSuccess) {
-      router.push("/admin/cars");
+      router.push("/admin/cars/user");
     }
   }, [isSuccess]);
 
@@ -92,7 +92,7 @@ const CarUpdate = ({ params }) => {
   return (
     <div className={styles.main}>
       <div className={styles.main__headers}>
-        <Link href="/admin/cars">
+        <Link href="/admin/cars/user">
           <button>Назад</button>
         </Link>
       </div>

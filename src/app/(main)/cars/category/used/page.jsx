@@ -78,7 +78,7 @@ export default function UsedAuto() {
     const data = await response.json();
     setIsLoading(false);
     setIsSuccess(true);
-    setIsError(false)
+    setIsError(false);
     setCars(data);
     setFilteredCars(data);
   }
@@ -183,7 +183,7 @@ export default function UsedAuto() {
       <div className={styles.catalogCars__items}>
         {filteredCars &&
           filteredCars.map((car) => <Car car={car} key={car.id} />)}
-        {filteredCars.length == 0 && (
+        {isSuccess && filteredCars.length == 0 && (
           <h2 style={{ marginTop: "30px" }}>
             По такому запросу объявления еще не разместили
           </h2>
