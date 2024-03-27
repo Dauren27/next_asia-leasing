@@ -6,7 +6,18 @@ import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
 import { useCreateColorMutation } from "@/libs/store/reducers/colorApi";
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({}));
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    "& .MuiDialog-paper": {
+      margin: 0,
+      maxWidth: "100%",
+      width: "100%",
+      height: "100%",
+      maxHeight: "100%",
+      borderRadius: 0,
+    },
+  },
+}));
 const PrettoSlider = styled(Slider)({
   color: "#52af77",
   height: 4,

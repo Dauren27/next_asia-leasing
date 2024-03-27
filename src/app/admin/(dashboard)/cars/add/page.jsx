@@ -150,14 +150,25 @@ const CarAdd = () => {
             </div>
             <div className={styles.form__item}>
               <h3>Срок финансирования</h3>
-              <input
+              <Select
+                value={formData.period}
+                onChange={handleChange}
+                name="period"
+                required
+                className={styles.filter__select}
+                MenuProps={{ disableScrollLock: true }}
+              >
+                <MenuItem value="3 месяца">3 месяца</MenuItem>
+                <MenuItem value="6 месяцов">6 месяцов</MenuItem>
+              </Select>
+              {/* <input
                 type="text"
                 placeholder="Введите срок финансирования"
                 name="period"
                 value={formData.period}
                 onChange={handleChange}
                 required
-              />
+              /> */}
             </div>
           </div>
           <div className={styles.form__middle}>

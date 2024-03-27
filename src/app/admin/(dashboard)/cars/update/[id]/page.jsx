@@ -35,7 +35,7 @@ const CarUpdate = ({ params }) => {
     transmission: cars && cars.transmission ? cars.transmission : "",
     color_id: cars && cars.color?.id ? cars.color.id : "",
     price: cars && cars.price,
-    period: cars && cars.period,
+    period: cars && cars.period ? cars.peiod : "",
     category_id: cars && cars.category?.id ? cars.category.id : "",
   });
 
@@ -145,17 +145,22 @@ const CarUpdate = ({ params }) => {
                   </Select>
                 </div>
               )}
-              <div className={styles.form__item}>
-                <h3>Срок финансирования</h3>
-                <input
-                  type="text"
-                  placeholder="Введите срок финансирования"
-                  name="period"
-                  value={formData.period}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+              {cars.period && (
+                <div className={styles.form__item}>
+                  <h3>Срок финансирования</h3>
+                  <Select
+                    value={formData.period}
+                    onChange={handleChange}
+                    name="period"
+                    required
+                    className={styles.filter__select}
+                    MenuProps={{ disableScrollLock: true }}
+                  >
+                    <MenuItem value="3 месяца">3 месяца</MenuItem>
+                    <MenuItem value="6 месяцов">6 месяцов</MenuItem>
+                  </Select>
+                </div>
+              )}
             </div>
             <div className={styles.form__middle}>
               {cars.gear && (
