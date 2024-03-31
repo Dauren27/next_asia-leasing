@@ -3,10 +3,12 @@ import styles from "./page.module.scss";
 import { BsPhone } from "react-icons/bs";
 import { FiMail } from "react-icons/fi";
 import { MdLocationOn } from "react-icons/md";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
 export default function Contacts() {
   return (
     <div className={styles.contacts}>
+      <Breadcrumbs links={[{ path: `/contacts`, name: "Контакты" }]} />
       <div className={styles.contacts__headers}>
         <h2>Контакты</h2>
       </div>

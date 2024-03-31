@@ -79,6 +79,7 @@ const EditUserModal = ({ open, onClose, id, name, password }) => {
       open={open}
       onClose={onClose}
       sx={{ "& .MuiDialog-paper": { maxWidth: "800px" } }}
+      disableScrollLock
     >
       <DialogTitle>
         <span className={styles.modal__title}>Изменить данные пользователя</span>

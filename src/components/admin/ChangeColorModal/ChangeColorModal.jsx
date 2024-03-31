@@ -75,6 +75,7 @@ const ChangeColorModal = ({ open, onClose, id }) => {
       open={open}
       onClose={onClose}
       sx={{ "& .MuiDialog-paper": { maxWidth: "800px" } }}
+      disableScrollLock
     >
       <DialogTitle>
         <span className={styles.modal__title}>Изменить цвет</span>

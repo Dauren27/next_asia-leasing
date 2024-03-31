@@ -1,16 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./fileUpload.module.scss";
 import { IoMdCloudUpload } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import Image from "next/image";
 
-const FileUpload = (props) => {
+const FileUpload = ({ onFilesSelected }) => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileInputRef = useRef(null);
-
-  const handleFileInputClick = () => {
-    fileInputRef.current.click();
-  };
 
   const handleFileChange = (event) => {
     const files = event.target.files;
@@ -20,7 +16,6 @@ const FileUpload = (props) => {
     const updatedList = [...selectedFiles];
     updatedList.splice(selectedFiles.indexOf(file), 1);
     setSelectedFiles(updatedList);
-    // props.onFileChange(updatedList);
   };
   const displaySelectedFiles = () => {
     return selectedFiles.map((file, index) => {
@@ -71,7 +66,6 @@ const FileUpload = (props) => {
   };
 
   // Implement resizeAndCompressImage function here (consider external library for advanced compression)
-
   const handleSendButtonClick = () => {
     if (selectedFiles.length > 0) {
       // Send compressed files to server using FormData and fetch/axios
@@ -81,6 +75,9 @@ const FileUpload = (props) => {
     }
   };
 
+  useEffect(() => {
+    onFilesSelected(selectedFiles);
+  }, [selectedFiles]);
   return (
     <div className={styles.wrapper}>
       <div className={styles.dropArea}>
@@ -91,7 +88,7 @@ const FileUpload = (props) => {
           hidden
           ref={fileInputRef}
           onChange={handleFileChange}
-          multiple // Allow multiple file selection
+          multiple
         />
         <IoMdCloudUpload />
         <p>Выберите фото для загрузки</p>

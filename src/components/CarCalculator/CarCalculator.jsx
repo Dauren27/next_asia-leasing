@@ -148,6 +148,7 @@ const CarCalculator = ({ open, onClose, car }) => {
       open={open}
       onClose={onClose}
       sx={{ "& .MuiDialog-paper": { maxWidth: "800px" } }}
+      disableScrollLock
     >
       <DialogTitle>
         <span className={styles.modal__title}>Калькулятор</span>

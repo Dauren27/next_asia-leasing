@@ -11,6 +11,8 @@ import {
   useDeleteColorMutation,
   useGetColorsQuery,
 } from "@/libs/store/reducers/colorApi";
+import { useSendImageMutation } from "@/libs/store/reducers/imageApi";
+
 import FileUpload from "@/components/admin/FileUpload/FileUpload";
 import ChangeColorModal from "@/components/admin/ChangeColorModal/ChangeColorModal";
 import AddColorModal from "@/components/admin/AddColorModal/AddColorModal";
@@ -36,6 +38,16 @@ const CarAdd = () => {
     period: "",
     category_id: "",
   });
+  const [images, setImages] = useState([]);
+  const [
+    sendImages,
+    {
+      isSuccess: isImagesSuccess,
+      isError: isImagesError,
+      isLoading: isImagesLoading,
+    },
+  ] = useSendImageMutation();
+
   const [createCar, { isLoading, isSuccess, isError }] = useCreateCarMutation();
   const { data: colors } = useGetColorsQuery();
 
@@ -62,19 +74,24 @@ const CarAdd = () => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // const convertedString = formData.volume.toString().replace(/(\d+),(\d+)/g, "$1.$2");
-    // const convertedNumber = parseFloat(convertedString);
-    // setFormData({ ...formData, volume: convertedNumber });
-    createCar(formData);
+    const result = await createCar(formData);
+    if (result?.data?.id) {
+      if (images.length >= 1) {
+        const formDataImage = new FormData();
+        for (let image of images) {
+          formDataImage.append("file", image);
+        }
+        sendImages({ formData: formDataImage, id: result.data.id });
+      }
+    }
   };
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && !isImagesLoading) {
       router.push("/admin/cars/user");
     }
-  }, [isSuccess]);
+  }, [isSuccess, isImagesLoading]);
 
   const [open, setOpen] = useState(false);
 
@@ -93,6 +110,9 @@ const CarAdd = () => {
 
   const handleUpdateModalClose = () => {
     setOpenUpdateModal(false);
+  };
+  const handleFilesSelected = (files) => {
+    setImages(files);
   };
   return (
     <div className={styles.main}>
@@ -307,8 +327,7 @@ const CarAdd = () => {
         </div>
         <div className={styles.form__img}>
           <h3>Фото автомобиля</h3>
-          {/* <DropFileInput /> */}
-          <FileUpload />
+          <FileUpload onFilesSelected={handleFilesSelected} />
         </div>
         {isError && <p className="error">Не удалось отправить данные</p>}
         {isLoading && <p className="loading">Загрузка...</p>}

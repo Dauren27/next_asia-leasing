@@ -8,6 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Car from "@/components/Car/Car";
 import { API_URL } from "@/libs/api";
+import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 
 export default function NewAuto() {
   const [isLoading, setIsLoading] = useState(false);
@@ -88,6 +89,9 @@ export default function NewAuto() {
 
   return (
     <div className={styles.catalogCars}>
+      <Breadcrumbs
+        links={[{ path: `/cars/category/new`, name: "Новые автомобили" }]}
+      />
       <div className={styles.catalogCars__header}>
         <div className={styles.catalogCars__headers}>
           <h2>Новые автомобили в наличии</h2>

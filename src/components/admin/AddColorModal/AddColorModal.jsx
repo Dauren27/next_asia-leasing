@@ -67,8 +67,14 @@ const PrettoSlider = styled(Slider)({
 });
 
 const AddColorModal = ({ open, onClose }) => {
-  const [createColor, { isLoading, isSuccess, isError }] =
-    useCreateColorMutation();
+  const [
+    createColor,
+    {
+      isLoading: isColorLoading,
+      isSuccess: isColorSuccess,
+      isError: isColorError,
+    },
+  ] = useCreateColorMutation();
   const [data, setData] = useState({
     title: "",
   });
@@ -76,17 +82,18 @@ const AddColorModal = ({ open, onClose }) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     createColor(data);
   };
   useEffect(() => {
-    if (isSuccess) onClose();
-  }, [isSuccess]);
+    if (isColorSuccess) onClose();
+  }, [isColorSuccess]);
   return (
     <BootstrapDialog
       open={open}
       onClose={onClose}
       sx={{ "& .MuiDialog-paper": { maxWidth: "800px" } }}
+      disableScrollLock
     >
       <DialogTitle>
         <span className={styles.modal__title}>Добавить цвет</span>
@@ -105,7 +112,7 @@ const AddColorModal = ({ open, onClose }) => {
         </IconButton>
       </DialogTitle>
       <DialogContent dividers>
-        <form className={styles.calculator__form}  onSubmit={handleSubmit}>
+        <form className={styles.calculator__form}>
           <div className={styles.form__item}>
             <h3>Цвет</h3>
             <input
@@ -117,10 +124,10 @@ const AddColorModal = ({ open, onClose }) => {
               required
             />
           </div>
-          {isError && <p className="error">Не удалось отправить данные</p>}
-          {isLoading && <p className="loading">Загрузка...</p>}
+          {isColorError && <p className="error">Не удалось отправить данные</p>}
+          {isColorLoading && <p className="loading">Загрузка...</p>}
           <div className={styles.form__item}>
-            <button>Добавить</button>
+            <button onClick={handleSubmit}>Добавить</button>
           </div>
         </form>
       </DialogContent>

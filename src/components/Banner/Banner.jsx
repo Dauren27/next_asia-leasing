@@ -32,7 +32,13 @@ const Banner = () => {
 
       <div className={styles.home__img}>
         <div className={styles.rhombus}>
-          <Image src={car} alt="Banner Car Picture" width={0} height={0}/>
+          <Image
+            src={car}
+            alt="Banner Car Picture"
+            width={0}
+            height={0}
+            priority
+          />
         </div>
       </div>
       {open && <Calculator onClose={handleCalculatorClose} open={open} />}

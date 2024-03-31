@@ -27,7 +27,12 @@
     @media (max-width: 768px) {
       width: 100%;
     }
-
+    a {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     img {
       max-width: 100%;
       max-height: 230px;
@@ -42,7 +47,11 @@
     justify-content: center;
     flex-wrap: wrap;
     width: 100%;
-
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
     h3 {
       color: var(--text-color);
       font-size: 28px;

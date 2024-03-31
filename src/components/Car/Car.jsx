@@ -12,24 +12,29 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 import CarCalculator from "../CarCalculator/CarCalculator";
-import Image from "next/image";
+import Link from "next/link";
 
 const photos = [car1, car2, car3, car4, car5];
 const photos2 = [
   {
-    image: car1,
+    image:
+      "https://im.mashina.kg/tachka/images//0/e/c/0ecd8fe958b483862b2edd3fcff9fc60_640x480.jpg",
   },
   {
-    image: car2,
+    image:
+      "https://im.mashina.kg/tachka/images//b/c/e/bcec4482b6d1b833866d76e537c1d309_640x480.jpg",
   },
   {
-    image: car3,
+    image:
+      "https://im.mashina.kg/tachka/images//7/4/3/743418bf5cb2f40a5ca34306a031ac89_640x480.jpg",
   },
   {
-    image: car4,
+    image:
+      "https://im.mashina.kg/tachka/images//3/2/7/3271d665437bfc2083fe29fa2fbcba39_640x480.jpg",
   },
   {
-    image: car5,
+    image:
+      "https://im.mashina.kg/tachka/images//9/b/3/9b3cd5701c2a88dee4efde11cad4d67d_640x480.jpg",
   },
 ];
 const NextArrow = (props) => {
@@ -74,18 +79,14 @@ const Car = ({ car }) => {
       <div className={styles.item__left}>
         <Slider {...sliderSettings}>
           {photos2.map((photo) => (
-            <Image
-              src={photo.image}
-              alt={`Car`}
-              key={photo.image}
-              width={0}
-              height={0}
-            />
+            <img src={photo.image} alt={`Car`} key={photo.image} />
           ))}
         </Slider>
       </div>
       <div className={styles.item__right}>
-        <h3>{car?.title}</h3>
+        <Link href={`/cars/${car?.title}?car_id=${car?.id}`}>
+          <h3>{car?.title}</h3>
+        </Link>
 
         <div className={styles.item__description}>
           <div className={styles.item__description__left}>
