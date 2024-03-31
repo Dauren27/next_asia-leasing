@@ -138,7 +138,7 @@ const Car = ({ car }) => {
         </div>
       </div>
 
-      <Dialog open={openDialog} onClose={handleDeleteCancel}>
+      <Dialog open={openDialog} onClose={handleDeleteCancel} disableScrollLock>
         <DialogTitle>Вы уверены что хотите удалить?</DialogTitle>
         <DialogActions>
           <Button onClick={handleDeleteCancel}>Отмена</Button>
