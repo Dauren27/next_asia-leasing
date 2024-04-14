@@ -50,6 +50,12 @@
       background-color: var(--input-background);
       color: var(--input-text-color);
     }
+    .input__green {
+      border: 1px solid var(--success-text);
+    }
+    .input__red {
+      border: 1px solid var(--error-text);
+    }
     .filter__select {
       margin-top: 10px;
 

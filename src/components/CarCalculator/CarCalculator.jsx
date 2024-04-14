@@ -5,9 +5,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
 import styles from "./carCalculator.module.scss";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-
+import CurrencyInput from "react-currency-input-field";
+import { toast } from "react-toastify";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
@@ -71,16 +70,16 @@ const PrettoSlider = styled(Slider)({
 const CarCalculator = ({ open, onClose, car }) => {
   const [data, setData] = useState({
     price: car && car.price,
-    initial_fee: 0,
+    initial_fee: car?.price && car.price * 0.3,
     months: 3,
     loanAmount: 0,
     percent: 25,
     monthlyPayment: 0,
     full_name: "",
-    region: "",
+    inn: "",
     phone: "",
   });
-
+  const [isOk, setIsOk] = useState(true);
   const marks = [
     { value: 3, label: "3 мес.", style: { marginLeft: "-30px" } },
     { value: 60, label: "60 мес." },
@@ -108,41 +107,41 @@ const CarCalculator = ({ open, onClose, car }) => {
     return monthlyPayment;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (!data.price || !data.initial_fee) {
       return;
     }
 
+    // if(data.initial_fee==null || )
+    if (!isOk) {
+      toast.error(
+        "Первоначальный взнос должен быть минимально 30% от стоимости авто",
+        {
+          autoClose: 2000,
+          theme: "colored",
+        }
+      );
+      return;
+    }
     calculateLoanAndPayment();
-
-    // Далее вы можете добавить логику отправки данных формы или другие действия,
-    // которые вам необходимо выполнить при отправке формы.
+    toast.success("Заявка успешно отправлена", {
+      autoClose: 1000,
+      theme: "colored",
+    });
   };
 
   useEffect(() => {
     calculateLoanAndPayment();
-  }, [data.price, data.initial_fee, data.months, data.percent]);
-  // const calculatePercent = () => {
-  //   let percentVal = 25;
-  //   if (data.price < 200001) {
-  //     percentVal = 25;
-  //   } else if (data.price < 400001) {
-  //     percentVal = 23;
-  //   } else if (data.price < 2000001) {
-  //     percentVal = 21;
-  //   } else if (data.price < 4000000) {
-  //     percentVal = 20;
-  //   } else if (data.price >= 4000000) {
-  //     percentVal = 18;
-  //   } else {
-  //     percentVal = 0;
-  //   }
-  //   setData({ ...data, percent: percentVal });
-  // };
-
-  // useEffect(() => {
-  //   calculatePercent();
-  // }, [data.price]);
+  }, [data.initial_fee, data.months, data.percent]);
+  useEffect(() => {
+    if (data.initial_fee < data.price * 0.3 || data.initial_fee == null) {
+      console.log(data.initial_fee);
+      setIsOk(false);
+    } else {
+      setIsOk(true);
+    }
+  }, [data.initial_fee]);
   return (
     <BootstrapDialog
       open={open}
@@ -152,6 +151,7 @@ const CarCalculator = ({ open, onClose, car }) => {
     >
       <DialogTitle>
         <span className={styles.modal__title}>Калькулятор</span>
+
         <IconButton
           aria-label="close"
           className={styles.calculator__close}
@@ -167,59 +167,42 @@ const CarCalculator = ({ open, onClose, car }) => {
         </IconButton>
       </DialogTitle>
       <DialogContent dividers>
-        <div className={styles.calculator__form}>
+        <form className={styles.calculator__form} onSubmit={handleSubmit}>
           <div className={styles.form__left}>
             <div className={styles.form__item}>
               <h3>Стоимость авто</h3>
-              {/* <InputMask
-                mask="999 999 999 999"
-                maskChar=""
-                value={data.price}
-                onChange={handleChange}
-              >
-                {(inputProps) => (
-                  <input
-                    type="text"
-                    placeholder="Введите стоимость авто"
-                    name="price"
-                    {...inputProps}
-                  />
-                )}
-              </InputMask> */}
-              <input
+              <CurrencyInput
+                id="price"
                 type="text"
+                suffix=" сом"
                 placeholder="Введите стоимость авто"
                 name="price"
+                step={100}
                 value={data.price}
-                onChange={handleChange}
+                disabled
+                required
+                onValueChange={(value) => setData({ ...data, price: value })}
               />
               <p>Максимальная сумма 5 000 000 сом</p>
             </div>
             <div className={styles.form__item}>
               <h3>Первоначальный взнос</h3>
-              {/* <InputMask
-                mask="99 999 999 999"
-                maskChar=""
-                value={data.initial_fee}
-                onChange={handleChange}
-              >
-                {(inputProps) => (
-                  <input
-                    type="text"
-                    placeholder="Введите сумму взноса"
-                    name="initial_fee"
-                    {...inputProps}
-                  />
-                )}
-              </InputMask> */}
-              <input
-                type="text"
+              <CurrencyInput
+                className={isOk ? styles.input__green : styles.input__red}
+                id="initial_fee"
                 placeholder="Введите сумму взноса"
+                suffix=" сом"
                 name="initial_fee"
                 value={data.initial_fee}
-                onChange={handleChange}
+                required
+                allowNegativeValue={false}
+                onValueChange={(value) =>
+                  setData({ ...data, initial_fee: value })
+                }
               />
-              <p>Минимально 30% от стоимости</p>
+              <p>
+                Минимально 30% от стоимости
+              </p>
             </div>
             <div className={styles.form__item}>
               <div className={styles.item__flex}>
@@ -236,23 +219,12 @@ const CarCalculator = ({ open, onClose, car }) => {
                   marks={marks}
                   min={3}
                   max={60}
+                  required
                   name="months"
                   value={data.months}
                   onChange={handleChange}
                 />
                 <p className={styles.slider__advice}>Двигайте ползунок</p>
-              </div>
-            </div>
-            <div className={styles.form__item}>
-              <div className={styles.item__flex}>
-                <div>
-                  <h3>Сумма займа</h3>
-                  <h4>{data.loanAmount} сом</h4>
-                </div>
-                <div>
-                  <h3 className={styles.verticalLine}>Процентная ставка</h3>
-                  <h4>{data.percent}%</h4>
-                </div>
               </div>
             </div>
           </div>
@@ -275,42 +247,21 @@ const CarCalculator = ({ open, onClose, car }) => {
                 type="text"
                 placeholder="Введите ваше ФИО"
                 name="full_name"
+                required
                 value={data.full_name}
                 onChange={handleChange}
               />
             </div>
             <div className={styles.form__item}>
-              <h3>Регион</h3>
-              {/* <input
+              <h3>ИНН</h3>
+              <input
                 type="text"
-                placeholder="Введите ваш регион"
-                name="region"
-                value={data.region}
+                placeholder="Введите ваш ИНН"
+                name="inn"
+                required
+                value={data.inn}
                 onChange={handleChange}
-              /> */}
-              <Select
-                value={data.region}
-                onChange={handleChange}
-                name="region"
-                className={styles.filter__select}
-                MenuProps={{ disableScrollLock: true }}
-              >
-                <MenuItem value="Бишкек">Бишкек</MenuItem>
-
-                <MenuItem value="Чуйская область">Чуйская область</MenuItem>
-                <MenuItem value="Таласская область">Таласская область</MenuItem>
-                <MenuItem value="Нарынская область">Нарынская область</MenuItem>
-                <MenuItem value="Ошская область">Ошская область</MenuItem>
-                <MenuItem value="Джалал – Абадская область">
-                  Джалал – Абадская область
-                </MenuItem>
-                <MenuItem value="Баткенская область">
-                  Баткенская область
-                </MenuItem>
-                <MenuItem value="Иссык-Кульская область">
-                  Иссык-Кульская область
-                </MenuItem>
-              </Select>
+              />
             </div>
             <div className={styles.form__item}>
               <h3>Номер телефона</h3>
@@ -334,15 +285,16 @@ const CarCalculator = ({ open, onClose, car }) => {
                 type="text"
                 placeholder="Введите ваш номер телефона"
                 name="phone"
+                required
                 value={data.phone}
                 onChange={handleChange}
               />
             </div>
             <div className={styles.form__item}>
-              <button onClick={handleSubmit}>Оставить заявку</button>
+              <button type="submit">Оставить заявку</button>
             </div>
           </div>
-        </div>
+        </form>
       </DialogContent>
     </BootstrapDialog>
   );
